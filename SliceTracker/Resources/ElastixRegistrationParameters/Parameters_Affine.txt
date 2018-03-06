@@ -29,13 +29,13 @@
 
 // The following components should usually be left as they are:
 (Registration "MultiResolutionRegistration")
-(Interpolator "BSplineInterpolator")
+(Interpolator "LinearInterpolator")
 (ResampleInterpolator "FinalBSplineInterpolator")
 (Resampler "DefaultResampler")
 
 // These may be changed to Fixed/MovingSmoothingImagePyramid.
 // See the manual.
-(FixedImagePyramid "FixedRecursiveImagePyramid")
+(FixedImagePyramid "FixedSmoothingImagePyramid")
 (MovingImagePyramid "MovingRecursiveImagePyramid")
 
 // The following components are most important:
@@ -55,7 +55,7 @@
 
 // Automatically guess an initial translation by aligning the
 // geometric centers of the fixed and moving.
-(AutomaticTransformInitialization "true")
+(AutomaticTransformInitialization "false")
 
 // Whether transforms are combined by composition or by addition.
 // In generally, Compose is the best option in most cases.
@@ -100,7 +100,7 @@
 // Maximum number of iterations in each resolution level:
 // 200-500 works usually fine for affine registration.
 // For more robustness, you may increase this to 1000-2000.
-(MaximumNumberOfIterations 250)
+(MaximumNumberOfIterations 512)
 
 // The step size of the optimizer, in mm. By default the voxel size is used.
 // which usually works well. In case of unusual high-resolution images
@@ -121,7 +121,7 @@
 // them randomly. See the manual for information on other sampling
 // strategies.
 (NewSamplesEveryIteration "true")
-(ImageSampler "Random")
+(ImageSampler "RandomSparseMask")
 
 // ************* Interpolation and Resampling ****************
 
